@@ -145,11 +145,11 @@ gulp.task('bithound', () => {
         return false;
     }
 
-    return execp('bithound check git@github.com:superleap/github-issues-label-sync.git');
+    return execp(`node_modules/.bin/bithound check git@github.com:superleap/github-issues-label-sync.git`);
 });
 
 gulp.task('package', () => {
-    return execp(`node_modules/babel-cli/bin/babel.js ${paths.src} --out-dir ${paths.compile}`);
+    return execp(`node_modules/.bin/babel ${paths.src} --out-dir ${paths.compile}`);
 });
 
 gulp.task('prepublish', ['nsp', 'bithound', 'package']);

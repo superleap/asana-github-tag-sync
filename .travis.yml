@@ -18,8 +18,6 @@ node_js:
 before_install:
   - npm i -g npm@^2.0.0
   - npm i -g gulp
-  - npm i -g babel
-  - npm i -g bithound
 before_script:
   - if (( "${TRAVIS_NODE_VERSION}" >= 6 )); then export CI_LATEST=true; fi;
   - if [ "$TRAVIS_BRANCH" = "master" ]; then export CI_MASTER=true; fi;
