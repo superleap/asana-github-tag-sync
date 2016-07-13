@@ -47,23 +47,23 @@ function execp(cmd, opts = {}) {
     });
 }
 
-gulp.task('changelog', () => {
-    return execp('mkdir -p ./build/manual && conventional-changelog -p angular -i ./build/manual/changelog.md -s -r 0');
+gulp.task(`changelog`, () => {
+    return execp(`mkdir -p ./build/manual && conventional-changelog -p angular -i ./build/manual/changelog.md -s -r 0`);
 });
 
-gulp.task('manual', ['changelog'], () => {
+gulp.task(`manual`, [`changelog`], () => {
     // parse github readme for available sections
-    return readFile('./README.md', 'utf8').then((response) => {
+    return readFile(`./README.md`, `utf8`).then((response) => {
         // split file based on headers (##) and generate mapping
         let blocks = response.split(/\n##\s[^\n]+\n\n/i).map((element) => {
             return element;
         });
 
-        return readFile(`${paths.manual}/changelog.md`, 'utf8').then((response) => {
-            let versions = response.split(/<a name="(?:(?:0|[1-9]\d*)\.){2}(?:0|[1-9]\d*)"><\/a>/i);
+        return readFile(`${paths.manual}/changelog.md`, `utf8`).then((response) => {
+            let versions = response.split(/<a name=`(?:(?:0|[1-9]\d*)\.){2}(?:0|[1-9]\d*)`><\/a>/i);
             versions.splice(0, 1);
 
-            return versions.join('');
+            return versions.join(``);
         }).then((response) => {
             let bindings = {
                 "index": `${blocks[0]}\n\n${blocks[1]}\n\n## LICENSE\n${blocks[6]}`,
@@ -92,10 +92,10 @@ gulp.task('manual', ['changelog'], () => {
     });
 });
 
-gulp.task('doc', ['manual'], () => {
+gulp.task(`doc`, [`manual`], () => {
     let config = {
         "destination": paths.docs,
-        "title": "GitHub Issues Label Sync Module",
+        "title": `GitHub Issues Label Sync Module`,
         "index": `${paths.manual}/index.md`,
         "manual": {
             "installation": [`${paths.manual}/installation.md`],
@@ -110,7 +110,7 @@ gulp.task('doc', ['manual'], () => {
         .pipe(gp.esdoc(config));
 });
 
-gulp.task('predeploy', ['doc'], () => {
+gulp.task(`predeploy`, [`doc`], () => {
     return pkg(paths.pkg, console.log, true).then((data) => {
         let pkgName = data.name;
         let pkgUser = data.repository.url.match(/github\.com\/([^\/]+)\//i)[1];
@@ -119,7 +119,7 @@ gulp.task('predeploy', ['doc'], () => {
     });
 });
 
-gulp.task('deploy', ['predeploy'], () => {
+gulp.task(`deploy`, [`predeploy`], () => {
     if (`true` !== process.env.CI_RELEASE) {
         return false;
     }
@@ -128,29 +128,34 @@ gulp.task('deploy', ['predeploy'], () => {
         .pipe(gp.ghPages());
 });
 
-gulp.task('lint', () => {
-    return gulp.src(['**/*.js', '!node_modules/**'])
+gulp.task(`lint`, () => {
+    return gulp.src([`**/*.js`, `!node_modules/**`])
         .pipe(gp.excludeGitignore())
         .pipe(gp.eslint())
         .pipe(gp.eslint.format())
         .pipe(gp.eslint.failAfterError());
 });
 
-gulp.task('nsp', (cb) => {
-    return gp.nsp({"package": path.resolve('package.json')}, cb);
+gulp.task(`nsp`, (cb) => {
+    return gp.nsp({"package": path.resolve(`package.json`)}, cb);
 });
 
-gulp.task('bithound', () => {
+gulp.task(`bithound`, () => {
     if (`true` !== process.env.CI_RELEASE) {
         return false;
     }
 
-    return execp(`node_modules/.bin/bithound check git@github.com:superleap/github-issues-label-sync.git`);
+    return pkg(paths.pkg, console.log, true).then((data) => {
+        let pkgName = data.name;
+        let pkgUser = data.repository.url.match(/github\.com\/([^\/]+)\//i)[1];
+
+        return execp(`node_modules/.bin/bithound check git@github.com:${pkgUser}/${pkgName}.git`);
+    });
 });
 
-gulp.task('package', () => {
+gulp.task(`package`, () => {
     return execp(`node_modules/.bin/babel ${paths.src} --out-dir ${paths.compile}`);
 });
 
-gulp.task('prepublish', ['nsp', 'bithound', 'package']);
-gulp.task('default', ['prepublish', 'lint']);
+gulp.task(`prepublish`, [`nsp`, `bithound`, `package`]);
+gulp.task(`default`, [`prepublish`, `lint`]);
