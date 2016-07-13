@@ -19,8 +19,8 @@ before_install:
   - npm i -g npm@^2.0.0
   - npm i -g gulp
 before_script:
-  - if (( "${TRAVIS_NODE_VERSION}" >= 6 )); then export CI_LATEST=1; fi;
-  - if [ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_PULL_REQUEST" == false ]; then export CI_RELEASE=1; fi;
+  - if (( "${TRAVIS_NODE_VERSION}" >= 6 )); then export CI_LATEST=true; fi;
+  - if [ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_PULL_REQUEST" == false ]; then export CI_RELEASE=true; fi;
   - npm prune
 after_success:
   - npm run semantic-release

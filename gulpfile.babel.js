@@ -120,7 +120,7 @@ gulp.task('predeploy', ['doc'], () => {
 });
 
 gulp.task('deploy', ['predeploy'], () => {
-    if (true != process.env.CI_RELEASE) {
+    if (`true` !== process.env.CI_RELEASE) {
         return false;
     }
 
@@ -141,7 +141,7 @@ gulp.task('nsp', (cb) => {
 });
 
 gulp.task('bithound', () => {
-    if (true != process.env.CI_RELEASE) {
+    if (`true` !== process.env.CI_RELEASE) {
         return false;
     }
 
