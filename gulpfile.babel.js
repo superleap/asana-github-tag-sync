@@ -1,11 +1,11 @@
 import Promise from 'bluebird';
 import childProcess from 'child_process';
+import conventionalChangelog from 'conventional-changelog';
 import fs from 'fs';
 import gulp from 'gulp';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import path from 'path';
 import readPackage from 'read-package-json';
-import conventionalChangelog from 'conventional-changelog';
 
 let exec = childProcess.exec;
 let pkg = Promise.promisify(readPackage);
@@ -50,9 +50,8 @@ function execp(cmd, opts = {}) {
 
 gulp.task(`changelog`, () => {
     return conventionalChangelog({
-        preset: 'angular',
-        releaseCount: 0,
-        // debug: console.log
+        "preset": `angular`,
+        "releaseCount": 0
     })
         .pipe(fs.createWriteStream(`${paths.manual}/changelog.md`));
 });
