@@ -3,7 +3,7 @@
   "description": "Small tool used to create identical github issue labels",
   "main": "lib/LabelSync.js",
   "engines": {
-    "node": ">=0.12"
+    "node": ">=4"
   },
   "scripts": {
     "test": "gulp",
@@ -37,7 +37,6 @@
   },
   "devDependencies": {
     "@semantic-release/last-release-npm": "https://github.com/vrtxf/last-release-npm/tarball/b0615aa9cc3bfd9f5a4b8a108b50a8697f544dd1",
-    "babel-cli": "^6.10.1",
     "babel-core": "^6.10.4",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-transform-es2015-block-scoping": "^6.10.1",

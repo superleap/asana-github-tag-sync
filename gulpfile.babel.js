@@ -159,7 +159,11 @@ gulp.task(`bithound`, () => {
 });
 
 gulp.task(`package`, () => {
-    return execp(`node_modules/.bin/babel ${paths.src} --out-dir ${paths.compile}`);
+    return pkg(paths.pkg, console.log, true).then((data) => {
+        return gulp.src(paths.src)
+            .pipe(gp.babel(data.babel))
+            .pipe(gulp.dest(paths.compile));
+    });
 });
 
 gulp.task(`prepublish`, [`nsp`, `bithound`, `package`]);
