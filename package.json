@@ -3,7 +3,7 @@
   "description": "Small tool used to create identical github issue labels",
   "main": "lib/LabelSync.js",
   "engines": {
-    "node": ">=4"
+    "node": ">=0.12"
   },
   "scripts": {
     "test": "gulp",
@@ -80,7 +80,8 @@
       "es2015"
     ],
     "plugins": [
-      "add-module-exports"
+      "add-module-exports",
+      "transform-es2015-block-scoping"
     ]
   }
 }
