@@ -36,6 +36,7 @@
     "github": "^2.1.0"
   },
   "devDependencies": {
+    "@semantic-release/last-release-npm": "https://github.com/vrtxf/last-release-npm/tarball/b0615aa9cc3bfd9f5a4b8a108b50a8697f544dd1",
     "babel-cli": "^6.10.1",
     "babel-core": "^6.10.4",
     "babel-plugin-add-module-exports": "^0.2.1",
@@ -43,6 +44,7 @@
     "babel-register": "^6.9.0",
     "bithound": "^1.3.0",
     "commitizen": "^2.8.2",
+    "conventional-changelog": "^1.1.0",
     "cz-conventional-changelog": "^1.1.6",
     "esdoc": "^0.4.7",
     "eslint": "^3.0.1",
@@ -66,6 +68,11 @@
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "release": {
+    "getLastRelease": {
+      "path": "./node_modules/@semantic-release/last-release-npm"
     }
   },
   "babel": {

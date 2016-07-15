@@ -5,6 +5,7 @@ import gulp from 'gulp';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import path from 'path';
 import readPackage from 'read-package-json';
+import conventionalChangelog from 'conventional-changelog';
 
 let exec = childProcess.exec;
 let pkg = Promise.promisify(readPackage);
@@ -48,7 +49,12 @@ function execp(cmd, opts = {}) {
 }
 
 gulp.task(`changelog`, () => {
-    return execp(`mkdir -p ./build/manual && conventional-changelog -p angular -i ./build/manual/changelog.md -s -r 0`);
+    return conventionalChangelog({
+        preset: 'angular',
+        releaseCount: 0,
+        // debug: console.log
+    })
+        .pipe(fs.createWriteStream(`${paths.manual}/changelog.md`));
 });
 
 gulp.task(`manual`, [`changelog`], () => {
