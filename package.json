@@ -42,7 +42,7 @@
     "babel-plugin-transform-es2015-block-scoping": "^6.10.1",
     "babel-preset-es2015": "^6.9.0",
     "babel-register": "^6.9.0",
-    "bithound": "^1.3.0",
+    "bithound": "^1.4.0",
     "commitizen": "^2.8.2",
     "conventional-changelog": "^1.1.0",
     "cz-conventional-changelog": "^1.1.6",
