@@ -72,7 +72,7 @@
   },
   "release": {
     "getLastRelease": {
-      "path": "@semantic-release/last-release-npm"
+      "path": "./node_modules/@semantic-release/last-release-npm"
     }
   },
   "babel": {
