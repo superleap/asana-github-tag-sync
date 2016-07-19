@@ -36,7 +36,7 @@
     "github": "^2.1.0"
   },
   "devDependencies": {
-    "@semantic-release/last-release-npm": "https://github.com/vrtxf/last-release-npm/tarball/b0615aa9cc3bfd9f5a4b8a108b50a8697f544dd1",
+    "@semantic-release/last-release-npm": "https://github.com/vrtxf/last-release-npm/tarball/eb54fcdf0dbe44f853fcff858fe3e127def133e9",
     "babel-core": "^6.10.4",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-transform-es2015-block-scoping": "^6.10.1",
@@ -47,7 +47,7 @@
     "conventional-changelog": "^1.1.0",
     "cz-conventional-changelog": "^1.1.6",
     "esdoc": "^0.4.7",
-    "eslint": "^3.0.1",
+    "eslint": "^3.1.1",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-codecov": "^2.0.2",
@@ -72,7 +72,7 @@
   },
   "release": {
     "getLastRelease": {
-      "path": "./node_modules/@semantic-release/last-release-npm"
+      "path": "@semantic-release/last-release-npm"
     }
   },
   "babel": {
