@@ -33,7 +33,7 @@
   "homepage": "https://github.com/superleap/github-issues-label-sync#readme",
   "dependencies": {
     "bluebird": "^3.4.1",
-    "github": "^6.1.0"
+    "github": "^14.0.0"
   },
   "devDependencies": {
     "@semantic-release/last-release-npm": "https://github.com/vrtxf/last-release-npm/tarball/da5a0f2411e2add6f5b0b990b4a12fad3245cfac",
